@@ -18,7 +18,7 @@ public class HW1 {
     }
 
 
-    // Difficulty: cubic
+    // Difficulty: cubic / 2
     public void threeDigitsZeroSum() {
         int[] arr = { -4, -3, -2, -1, 1, 2, 3, 4 };
 
@@ -26,11 +26,12 @@ public class HW1 {
         System.out.println("Array: " + Arrays.toString(arr));
 
         int a, b, c;
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr.length; j++) {
-                for (int k = 0; k < arr.length; k++) {
+        int n = arr.length;
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                for (int k = j + 1; k < n; k++) {
                     a = arr[i]; b = arr[j]; c = arr[k];
-                    if ((a + b + c) == 0 && (a != b && a != b && c != a)) {
+                    if ((a + b + c) == 0 && (a != b && c != b && c != a)) {
                         System.out.println("" + a + " + " + b + " + " + c + " = 0");
                     }
                 }

@@ -56,13 +56,16 @@ public class MyArray {
     }
 
     public void add(int num) {
-        len++;
-        int[] newArr = new int[len];
-        for (int i = 0; i < len - 1; i++) {
-            newArr[i] = arr[i];
+        if(len == arr.length) {
+            int[] newArr = new int[len * 2];
+            for (int i = 0; i < len; i++) {
+                newArr[i] = arr[i];
+            }
+            arr = newArr;
+            System.out.printf("Array length exceeded -> increasing length twice - from %d to %d\n", len, arr.length);
         }
-        newArr[len - 1] = num;
-        arr = newArr;
+        arr[len] = num;
+        len++;
     }
 
     public int find(int num) {

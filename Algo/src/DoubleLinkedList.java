@@ -5,34 +5,56 @@ public class DoubleLinkedList<T> implements Iterable<T> {
     private Node<T> head;
     private Node<T> tail;
 
-    public DoubleLinkedList() {
-        head = new Node<>(null);
-        tail = new Node<>(null);
-        head.next = tail;
-        tail.prev = head;
+    public DoubleLinkedList() {}
+
+    public boolean isEmpty() {
+        return tail == null && head == null;
+    }
+
+    public void createFirstElement(T value) {
+        Node<T> newNode = new Node<>(value);
+        tail = head = newNode;
     }
 
     public void insertTail(T value) {
-        Node<T> last = tail.prev;
-        Node<T> newNode = new Node<>(value);
-        newNode.next = tail;
-        newNode.prev = last;
+        if(isEmpty()) {
+            createFirstElement(value);
+        } else {
+            Node<T> newNode = new Node<>(value);
+            newNode.prev = tail;
+            tail.next = newNode;
+            tail = newNode;
+        }
     }
 
     public void insertHead(T value) {
-        Node<T> first = head.next;
-        Node<T> newNode = new Node<>(value);
-        newNode.prev = head;
-        newNode.next = first;
+        if(isEmpty()) {
+            createFirstElement(value);
+        } else {
+            Node<T> newNode = new Node<>(value);
+            newNode.next = head;
+            head.prev = newNode;
+            head = newNode;
+        }
     }
 
     public T deleteHead() {
-        //TODO реализовать в качестве ДЗ
+        if(!isEmpty()) {
+            T value = head.value;
+            head = head.next;
+            head.prev = null;
+            return value;
+        }
         return null;
     }
 
     public T deleteTail() {
-        //TODO реализовать в качестве ДЗ
+        if(!isEmpty()) {
+            T value = tail.value;
+            tail = tail.prev;
+            tail.next = null;
+            return value;
+        }
         return null;
     }
 
@@ -77,12 +99,7 @@ public class DoubleLinkedList<T> implements Iterable<T> {
 
     public static void main(String[] args) {
         DoubleLinkedList<Integer> doubleLinkedList = new DoubleLinkedList<>();
-        doubleLinkedList.insertTail(2);
-        doubleLinkedList.insertTail(2);doubleLinkedList.insertTail(2);
 
-
-
-/*
         doubleLinkedList.insertHead(1);
         doubleLinkedList.insertTail(2);
         doubleLinkedList.insertHead(3);
@@ -91,8 +108,15 @@ public class DoubleLinkedList<T> implements Iterable<T> {
         doubleLinkedList.insertTail(6);
         doubleLinkedList.insertHead(7);
         doubleLinkedList.insertTail(8);
-        doubleLinkedList.insertTail(9); */
+        doubleLinkedList.insertHead(9);
         System.out.println("After insert 1-9");
         doubleLinkedList.print();
+
+        System.out.printf("Delete tail: %d \n", doubleLinkedList.deleteTail());
+        doubleLinkedList.print();
+
+        System.out.printf("Delete head: %d \n", doubleLinkedList.deleteHead());
+        doubleLinkedList.print();
+
     }
 }

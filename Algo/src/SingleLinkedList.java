@@ -116,7 +116,10 @@ public class SingleLinkedList<T> implements Iterable<T> {
 
     public T peek() {
         //TODO реализовать в качестве ДЗ
-        return head.value;
+        if(head != null) {
+            return head.value;
+        }
+        return null;
     }
 
     public void enqueue(T value) {
@@ -166,6 +169,7 @@ public class SingleLinkedList<T> implements Iterable<T> {
 
     public static void main(String[] args) {
         SingleLinkedList<Integer> singleLinkedList = new SingleLinkedList<>();
+        System.out.printf("Peek of empty list: %d \n", singleLinkedList.peek());
         singleLinkedList.insertHead(1);
         singleLinkedList.insertTail(2);
         singleLinkedList.insertHead(3);

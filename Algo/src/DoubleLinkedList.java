@@ -11,7 +11,7 @@ public class DoubleLinkedList<T> implements Iterable<T> {
         return tail == null && head == null;
     }
 
-    public void createFirstElement(T value) {
+    private void createFirstElement(T value) {
         Node<T> newNode = new Node<>(value);
         tail = head = newNode;
     }

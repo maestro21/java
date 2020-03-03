@@ -37,6 +37,12 @@ public class BinaryTree {
         return current == null ? 0 : getSizeRecursive(current.left) + 1 + getSizeRecursive(current.right);
     }
 
+
+    public int getHeight() {
+        return height(root);
+    }
+
+
     public boolean containsNode(int value) {
         return containsNodeRecursive(root, value);
     }

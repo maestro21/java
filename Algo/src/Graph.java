@@ -75,6 +75,7 @@ public class Graph {
                     if(v.equals(dest)) {
                         Stack<Vertex> stack = new Stack<>();
                         Vertex curr = v;
+                        // restore shortest way
                         while(curr != null && !curr.equals(root)) {
                             stack.push(curr);
                             curr = curr.getPrev();
